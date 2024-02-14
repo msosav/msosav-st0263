@@ -6,13 +6,13 @@
 
 ## Nombre de la actividad
 
-### 1. breve descripción de la actividad
+### 1. Breve descripción de la actividad
 
 #### 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
 #### 1.2. Que aspectos NO cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
-### 2. información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
+### 2. Información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
 
 ### 3. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
 
