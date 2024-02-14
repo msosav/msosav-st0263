@@ -1,4 +1,4 @@
-# ST0263 Tópicos Especiales de Telemática
+# ST0263 Tópicos Especiales en Telemática
 
 **Estudiante: Miguel Sosa, msosav@eafit.edu.co**
 
