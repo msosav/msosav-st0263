@@ -1,5 +1,4 @@
 from flask import Flask, request
-import json
 import requests
 import os
 import sys
@@ -28,11 +27,18 @@ def login(pserver_data):
     response = requests.get(
         f"http://{SERVER_URL}:{SERVER_PORT}/login?username={username}&password={password}")
     if response.status_code == 200:
-        return response.text
+        username = response.json().get('username')
+        return f"Logged in as {username}"
     return "Server not available"
 
 
 def upload_file(pserver_data):
     response = requests.post(
         f"http://{SERVER_URL}:{SERVER_PORT}/upload", json=pserver_data)
+    return response.text
+
+
+def query_file(pserver_data):
+    response = requests.get(
+        f"http://{SERVER_URL}:{SERVER_PORT}/download", json=pserver_data)
     return response.text

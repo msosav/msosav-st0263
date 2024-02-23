@@ -2,8 +2,7 @@ import dotenv
 import os
 import sys
 import time
-import requests
-from pserver import pserver, login, upload_file
+from pserver import pserver, login, upload_file, query_file
 from threading import Thread
 env_path = os.path.join(os.path.dirname(__file__),
                         f"../bootstrap/.env_{sys.argv[1]}")
@@ -36,16 +35,18 @@ if __name__ == "__main__":
     time.sleep(2)
     login_to_server()
     while True:
-        print("What do you want to do?")
+        print("\nWhat do you want to do?")
         print("1. Upload file")
         print("2. Download file")
         print("3. Exit")
-        choice = input("Enter choice:")
+        choice = input("Enter choice: ")
         if choice == "1":
             file_name = input("Enter file name: ")
             data = {"url": url, "file_name": file_name}
             print(upload_file(data))
         elif choice == "2":
-            pass
+            file_name = input("Enter file name: ")
+            data = {"file_name": file_name}
+            print(query_file(data))
         elif choice == "3":
             break

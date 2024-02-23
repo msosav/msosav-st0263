@@ -54,5 +54,15 @@ def upload():
     return f"File uploaded successfully"
 
 
+@app.route('/download', methods=['GET'])
+def download():
+    pserver_data = request.json
+    file_name = pserver_data.get('file_name')
+    if file_name in files:
+        return f"File available at {files[file_name]}"
+    else:
+        return f"File not available"
+
+
 if __name__ == "__main__":
     app.run(host=SERVER_URL, port=SERVER_PORT, debug=True)
