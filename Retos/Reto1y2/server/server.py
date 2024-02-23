@@ -39,5 +39,20 @@ def login():
         return json.dumps(pserver_data)  # Convertir a JSON y retornar
 
 
+@app.route('/upload', methods=['POST'])
+def upload():
+    pserver_data = request.json
+    url = pserver_data.get('url')
+    file_name = pserver_data.get('file_name')
+    if file_name in files:
+        if files[file_name] == url:
+            return f"File already uploaded by you"
+        else:
+            files[file_name] = [files[file_name], url]
+    else:
+        files[file_name] = url
+    return f"File uploaded successfully"
+
+
 if __name__ == "__main__":
     app.run(host=SERVER_URL, port=SERVER_PORT, debug=True)
