@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+message File{
+  string file_name = 1;
+}
+
+message Response{
+  int32 status_code = 1;
+}
+
+service PServer{
+  rpc DownloadFile(File) returns (Response);
+  rpc RequestFile(File) returns (Response);
+
+  rpc UploadFile(File) returns (Response);
+}
