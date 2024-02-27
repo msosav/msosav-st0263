@@ -1,0 +1,22 @@
+{
+  "keepExistingTerminalsOpen": false,
+  "runOnStartup": true,
+  "terminals": [
+    {
+      "splitTerminals": [
+        {
+          "name": "server",
+          "commands": ["pipenv run python server/server.py"]
+        },
+        {
+          "name": "peer1",
+          "commands": ["cd peer && pipenv shell"]
+        },
+        {
+          "name": "peer2",
+          "commands": ["cd peer && pipenv shell"]
+        }
+      ]
+    }
+  ]
+}
