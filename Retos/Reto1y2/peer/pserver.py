@@ -13,8 +13,7 @@ from threading import Thread
 
 app = Flask(__name__)
 
-env_path = os.path.join(os.path.dirname(__file__),
-                        f"../bootstrap/.env_{sys.argv[2]}")
+env_path = os.path.join(os.path.dirname(__file__), sys.argv[2])
 dotenv.load_dotenv(dotenv_path=env_path)
 
 PSERVER_PORT = os.getenv("PSERVER_PORT")

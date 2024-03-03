@@ -4,6 +4,7 @@ This file contains the server code for the PServer
 import json
 import os
 import random
+import sys
 from threading import Thread
 import time
 
@@ -11,7 +12,7 @@ from dotenv import load_dotenv
 from flask import Flask, Response, jsonify, request
 
 # Load environment variables
-env_path = os.path.join(os.path.dirname(__file__), "../bootstrap/.env_server")
+env_path = os.path.join(os.path.dirname(__file__), sys.argv[1])
 load_dotenv(dotenv_path=env_path)
 
 SERVER_URL = os.getenv("SERVER_URL")

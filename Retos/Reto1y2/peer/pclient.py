@@ -11,8 +11,7 @@ import pserver_pb2
 import pserver_pb2_grpc
 from pserver import pserver
 
-env_path = os.path.join(os.path.dirname(__file__),
-                        f"../bootstrap/.env_{sys.argv[1]}")
+env_path = os.path.join(os.path.dirname(__file__), sys.argv[1])
 dotenv.load_dotenv(dotenv_path=env_path)
 
 PSERVER_PORT = os.getenv("PSERVER_PORT")
