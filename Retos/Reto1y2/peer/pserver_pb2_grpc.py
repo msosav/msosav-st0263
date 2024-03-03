@@ -14,13 +14,28 @@ class PServerStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.Login = channel.unary_unary(
+                '/PServer/Login',
+                request_serializer=pserver__pb2.UserData.SerializeToString,
+                response_deserializer=pserver__pb2.Response.FromString,
+                )
+        self.Logout = channel.unary_unary(
+                '/PServer/Logout',
+                request_serializer=pserver__pb2.Username.SerializeToString,
+                response_deserializer=pserver__pb2.Response.FromString,
+                )
+        self.DownloadFileRequest = channel.unary_unary(
+                '/PServer/DownloadFileRequest',
+                request_serializer=pserver__pb2.File.SerializeToString,
+                response_deserializer=pserver__pb2.Response.FromString,
+                )
         self.DownloadFile = channel.unary_unary(
                 '/PServer/DownloadFile',
                 request_serializer=pserver__pb2.File.SerializeToString,
                 response_deserializer=pserver__pb2.Response.FromString,
                 )
-        self.RequestFile = channel.unary_unary(
-                '/PServer/RequestFile',
+        self.UploadFileRequest = channel.unary_unary(
+                '/PServer/UploadFileRequest',
                 request_serializer=pserver__pb2.File.SerializeToString,
                 response_deserializer=pserver__pb2.Response.FromString,
                 )
@@ -34,13 +49,31 @@ class PServerStub(object):
 class PServerServicer(object):
     """Missing associated documentation comment in .proto file."""
 
+    def Login(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Logout(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DownloadFileRequest(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def DownloadFile(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def RequestFile(self, request, context):
+    def UploadFileRequest(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -55,13 +88,28 @@ class PServerServicer(object):
 
 def add_PServerServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'Login': grpc.unary_unary_rpc_method_handler(
+                    servicer.Login,
+                    request_deserializer=pserver__pb2.UserData.FromString,
+                    response_serializer=pserver__pb2.Response.SerializeToString,
+            ),
+            'Logout': grpc.unary_unary_rpc_method_handler(
+                    servicer.Logout,
+                    request_deserializer=pserver__pb2.Username.FromString,
+                    response_serializer=pserver__pb2.Response.SerializeToString,
+            ),
+            'DownloadFileRequest': grpc.unary_unary_rpc_method_handler(
+                    servicer.DownloadFileRequest,
+                    request_deserializer=pserver__pb2.File.FromString,
+                    response_serializer=pserver__pb2.Response.SerializeToString,
+            ),
             'DownloadFile': grpc.unary_unary_rpc_method_handler(
                     servicer.DownloadFile,
                     request_deserializer=pserver__pb2.File.FromString,
                     response_serializer=pserver__pb2.Response.SerializeToString,
             ),
-            'RequestFile': grpc.unary_unary_rpc_method_handler(
-                    servicer.RequestFile,
+            'UploadFileRequest': grpc.unary_unary_rpc_method_handler(
+                    servicer.UploadFileRequest,
                     request_deserializer=pserver__pb2.File.FromString,
                     response_serializer=pserver__pb2.Response.SerializeToString,
             ),
@@ -81,6 +129,57 @@ class PServer(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
+    def Login(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PServer/Login',
+            pserver__pb2.UserData.SerializeToString,
+            pserver__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Logout(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PServer/Logout',
+            pserver__pb2.Username.SerializeToString,
+            pserver__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DownloadFileRequest(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/PServer/DownloadFileRequest',
+            pserver__pb2.File.SerializeToString,
+            pserver__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def DownloadFile(request,
             target,
             options=(),
@@ -98,7 +197,7 @@ class PServer(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def RequestFile(request,
+    def UploadFileRequest(request,
             target,
             options=(),
             channel_credentials=None,
@@ -108,7 +207,7 @@ class PServer(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/PServer/RequestFile',
+        return grpc.experimental.unary_unary(request, target, '/PServer/UploadFileRequest',
             pserver__pb2.File.SerializeToString,
             pserver__pb2.Response.FromString,
             options, channel_credentials,

@@ -10,6 +10,20 @@ class File(_message.Message):
     file_name: str
     def __init__(self, file_name: _Optional[str] = ...) -> None: ...
 
+class UserData(_message.Message):
+    __slots__ = ("username", "password")
+    USERNAME_FIELD_NUMBER: _ClassVar[int]
+    PASSWORD_FIELD_NUMBER: _ClassVar[int]
+    username: str
+    password: str
+    def __init__(self, username: _Optional[str] = ..., password: _Optional[str] = ...) -> None: ...
+
+class Username(_message.Message):
+    __slots__ = ("username",)
+    USERNAME_FIELD_NUMBER: _ClassVar[int]
+    username: str
+    def __init__(self, username: _Optional[str] = ...) -> None: ...
+
 class Response(_message.Message):
     __slots__ = ("status_code",)
     STATUS_CODE_FIELD_NUMBER: _ClassVar[int]
