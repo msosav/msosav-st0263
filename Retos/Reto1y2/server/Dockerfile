@@ -1,22 +1,22 @@
-# Use an official Python runtime as a parent image
-FROM python:3.12
+# start by pulling the python image
+FROM python:3.12-alpine
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# copy the requirements file into the image
+COPY ./requirements.txt /app/requirements.txt
 
-# Set the working directory in the container
-WORKDIR /code
+# copy the server config into the image
+COPY ./.env_server /app/.env_server
 
-# Copy the current directory contents into the container at /code
-COPY . /code/
+# switch working directory
+WORKDIR /app
 
-# Install dependencies
-RUN pip install --upgrade pip
+# install the dependencies and packages in the requirements file
 RUN pip install -r requirements.txt
 
-# Environment variables
-ARG ENV_SERVER
-COPY ${ENV_SERVER} /code/
+# copy every content from the local file to the image
+COPY . /app
+
+# configure the container to run in an executed manner
+ENTRYPOINT [ "python" ]
 
 RUN ["python", "server.py", ".env_server"]
