@@ -17,5 +17,6 @@ RUN pip install -r requirements.txt
 
 # Environment variables
 ARG ENV_SERVER
+COPY ${ENV_SERVER} /code/
 
-RUN ["python", "server.py", "ENV_SERVER"]
+RUN ["python", "server.py", ".env_server"]
