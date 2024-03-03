@@ -27,6 +27,15 @@ files = {}
 active_peers = {}
 
 
+@app.route("/", methods=["GET"])
+def home():
+    """
+    Index page
+    :return: str
+    """
+    return "Server running"
+
+
 @app.route("/login", methods=["POST"])
 def login():
     """

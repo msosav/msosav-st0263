@@ -6,6 +6,7 @@ COPY ./requirements.txt /app/requirements.txt
 
 # copy the server config into the image
 COPY ./.env_server /app/.env_server
+RUN export $(cat .env_server | xargs)
 
 # switch working directory
 WORKDIR /app
@@ -15,6 +16,9 @@ RUN pip install -r requirements.txt
 
 # copy every content from the local file to the image
 COPY . /app
+
+# Expose the port the app runs on
+EXPOSE $PORT
 
 # configure the container to run in an executed manner
 ENTRYPOINT [ "python" ]
