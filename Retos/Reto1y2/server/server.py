@@ -152,4 +152,5 @@ def get_peer(url):
 
 if __name__ == "__main__":
     Thread(target=check_active_peers).start()
+    print(f"Server running on {SERVER_URL}:{SERVER_PORT}")
     app.run(host=SERVER_URL, port=SERVER_PORT, debug=True)
