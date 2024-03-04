@@ -18,6 +18,3 @@ RUN pip install -r requirements.txt
 # Expose the port the app runs on
 RUN export $(cat .env_pserver | xargs)
 EXPOSE $PSERVER_PORT
-
-# Run the application
-CMD ["python", "pclient.py", ".env_pclient", ".env_pserver"]

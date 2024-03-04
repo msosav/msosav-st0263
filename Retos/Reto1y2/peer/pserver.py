@@ -8,10 +8,7 @@ import grpc
 import pserver_pb2
 import pserver_pb2_grpc
 import requests
-from flask import Flask
 from threading import Thread
-
-app = Flask(__name__)
 
 env_path = os.path.join(os.path.dirname(__file__), sys.argv[2])
 dotenv.load_dotenv(dotenv_path=env_path)
