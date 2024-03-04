@@ -61,55 +61,200 @@ El sistema está compuesto por tres componentes principales: el pclient, el pser
   pipenv install
   ```
 
+  - **pserver.proto**
+
+    Para compilar el archivo .proto se debe de correr el siguiente comando en el directorio _peer_:
+
+    ```bash
+    python -m grpc_tools.protoc -I ../protobufs --python_out=. --pyi_out=. --grpc_python_out=. ../protobufs/pserver.proto
+    ```
+
   - **Server**
 
-  ```bash
-  pipenv run python server/server.py <.env_server>
-  ```
+    Para correr el server se debe de correr el siguiente comando en el directorio _server_:
+
+    ```bash
+    pipenv run python server.py <.env_server>
+    ```
 
   - **Peer**
 
-    La idea es correr el pclient con dos archivos .env, uno para el pclient y otro para el pserver.
+    Para correr el peer se debe de correr el siguiente comando en el directorio _peer_:
 
     ```bash
     pipenv run python peer/pclient.py <.env_pclient> <.env_pserver>
     ```
 
-    Además, para el correcto funcionamiento se debe tener dos peers corriendo en dos terminales diferentes.
+    Además, para el correcto funcionamiento se debe tener dos peers corriendo en dos terminales diferentes con diferentes archivos de configuración.
 
 - Detalles del desarrollo.
 - Detalles técnicos
-- Descripción y como se configura los parámetros del proyecto (ej: ip, puertos, conexión a bases de datos, variables de ambiente, parámetros, etc)
-- Opcional - detalles de la organización del código por carpetas o descripción de algún archivo. (ESTRUCTURA DE DIRECTORIOS Y ARCHIVOS IMPORTANTE DEL PROYECTO, comando 'tree' de linux)
+
+  - **Lenguaje de programación:** Python 3.12
+  - **Librerías**:
+    - flask==3.0.2
+    - python-dotenv==1.0.1
+    - requests==2.31.0
+    - grpcio-tools==1.62.0
+    - grpcio==1.62.0
+
+- Descripción y como se configura los parámetros del proyecto.
+
+  - **.env_server**
+
+    ```bash
+    SERVER_URL="localhost"
+    SERVER_PORT=5000
+    ```
+
+  - **.env_pclient**
+
+    ```bash
+    PSERVER_URL="localhost"
+    PSERVER_PORT="<PORT>"
+    ```
+
+  - **.env_pserver**
+
+    ```bash
+    PSERVER_URL="localhost"
+    PSERVER_LOCAL_URL="localhost"
+    PSERVER_PORT="<PORT>"
+    SERVER_URL="localhost"
+    SERVER_PORT=5000
+    ```
+
+- Estructura de directorios y archivos.
+
   ```bash
-    .
-    ├── bootstrap
-    ├── peer
-    │   ├── Dockerfile
-    │   ├── pclient.py
-    │   ├── pserver_pb2_grpc.py
-    │   ├── pserver_pb2.py
-    │   ├── pserver_pb2.pyi
-    │   └── pserver.py
-    ├── Pipfile
-    ├── Pipfile.lock
-    ├── protobufs
-    │   └── pserver.proto
-    ├── README.md
-    ├── requirements.txt
-    └── server
-        ├── Dockerfile
-        └── server.py
+  .
+  ├── bootstrap
+  │   ├── .env_pclient1
+  │   ├── .env_pclient2
+  │   ├── .env_pserver1
+  │   ├── .env_pserver2
+  │   └── .env_server
+  ├── peer
+  │   ├── Dockerfile
+  │   ├── pclient.py
+  │   ├── pserver_pb2_grpc.py
+  │   ├── pserver_pb2.py
+  │   ├── pserver_pb2.pyi
+  │   ├── pserver.py
+  │   └── requirements.txt
+  ├── Pipfile
+  ├── Pipfile.lock
+  ├── protobufs
+  │   └── pserver.proto
+  ├── README.md
+  └── server
+      ├── Dockerfile
+      ├── requirements.txt
+      └── server.py
   ```
-- Opcional - si quiere mostrar resultados o pantallazos
 
 ### 4. Descripción del ambiente de ejecución (en producción) lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
 
 - IP o nombres de dominio en nube o en la máquina servidor.
-- Descripción y como se configura los parámetros del proyecto (ej: ip, puertos, conexión a bases de datos, variables de ambiente, parámetros, etc)
+
+  - **Server:**
+    - _IP:_ `54.174.42.217`
+    - _PORT:_ `5000`
+  - **Peer 1:**
+    - _IP:_ `54.87.43.104`
+    - _PORT:_ `5000`
+  - **Peer 2:**
+    - _IP:_ `54.87.43.104`
+    - _PORT:_ `5001`
+
+- Descripción y como se configura los parámetros del proyecto
+
+  - **.env_server**
+
+    ```bash
+    SERVER_URL="0.0.0.0"
+    SERVER_PORT=5000
+    ```
+
+  - **.env_pclient**
+
+    ```bash
+    PSERVER_URL="54.87.43.104"
+    PSERVER_PORT="<PORT>"
+    ```
+
+  - **.env_pserver**
+
+    ```bash
+    PSERVER_URL="54.87.43.104"
+    PSERVER_LOCAL_URL="0.0.0.0"
+    PSERVER_PORT="<PORT>"
+    SERVER_URL="54.174.42.217"
+    SERVER_PORT=5000
+    ```
+
 - Como se lanza el servidor.
+
+  **IMPORTANTE:** Para correr el peer se debe de tener instalado Docker.
+
+  Para correr el server se debe de clonear el repositorio y correr el siguiente comando en el directorio _Retos/Reto1y2/server_:
+
+  ```bash
+  docker build -t server .
+  docker run -p 5000:5000 server
+  ```
+
 - Una mini guia de como un usuario utilizaría el software o la aplicación
-- Opcional - si quiere mostrar resultados o pantallazos
+
+  **IMPORTANTE:** Para correr el peer se debe de tener instalado Docker. Además los siguientes comandos se deben de correr para cada peer.
+
+  Para correr el peer se debe de clonear el repositorio y correr el siguiente comando en el directorio _Retos/Reto1y2/peer_ :
+
+  ```bash
+  docker build -t peer<N> .
+  ```
+
+  Luego debe de correr el contenedor con el siguiente comando:
+
+  ```bash
+  docker run -it -d -p <PORT>:<PORT> peer<N>
+  ```
+
+  Luego se debe acceder al contenedor con el siguiente comando:
+
+  ```bash
+  docker exec -it <CONTAINER_ID> /bin/bash
+  ```
+
+  Donde el `<CONTAINER_ID>` es el id del contenedor que se obtiene con el siguiente comando:
+
+  ```bash
+  docker ps
+  ```
+
+  Y dentro del contenedor correr el siguiente comando:
+
+  ```bash
+  python pclient.py <.env_pclient> <.env_pserver>
+  ```
+
+  Además, para el correcto funcionamiento se debe tener dos peers corriendo en dos terminales diferentes con diferentes archivos de configuración.
+
+  - **Login:**
+
+    Se ingresa el nombre de usuario y contraseña.
+
+  - **Subir archivo:**
+
+    Se indica la opción `1` y se ingresa el nombre del archivo que se quiere subir.
+
+  - **Bajar archivo:**
+
+    Se indica la opción `2` y se ingresa el nombre del archivo que se quiere bajar.
+
+  - **Logout:**
+
+    Se indica la opción `3`.
 
 ### 5. Otra información que considere relevante para esta actividad.
 
@@ -118,3 +263,8 @@ El sistema está compuesto por tres componentes principales: el pclient, el pser
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EmKVDCq57so?si=CwHbdLDMm2ZmxL6P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Referencias:
+
+- [Python gRPC Tutorial - Create a gRPC Client and Server in Python with Various Types of gRPC Calls](https://youtu.be/WB37L7PjI5k?si=3V4YKClNlm_N-DW6)
+- [Flask Documentation](https://flask.palletsprojects.com/en/3.0.x/)
+- [How can I delete all local Docker images?](https://stackoverflow.com/questions/44785585/how-can-i-delete-all-local-docker-images)
+- [Python Requirements.txt – How to Create and Pip Install Requirements.txt in Python](https://www.freecodecamp.org/news/python-requirementstxt-explained/)
