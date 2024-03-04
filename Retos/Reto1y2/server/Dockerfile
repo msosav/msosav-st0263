@@ -19,5 +19,5 @@ RUN pip install -r requirements.txt
 RUN export $(cat .env_server | xargs)
 EXPOSE $SERVER_PORT
 
-# Command to run the application using Gunicorn
+# Run the application
 CMD ["python", "server.py", ".env_server"]
