@@ -6,17 +6,18 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set the working directory in the container
-WORKDIR /code
+WORKDIR /app
 
-# Copy the current directory contents into the container at /code
-COPY . /code/
+# Copy the application code into the image
+COPY . /app/
 
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Environment variables
-ARG ENV_PCLIENT
-ARG ENV_PSERVER
+# Expose the port the app runs on
+RUN export $(cat .env_pserver | xargs)
+EXPOSE $PSERVER_PORT
 
-RUN ["python", "pclient.py", "ENV_PCLIENT", "ENV_PSERVER"]
+# Run the application
+CMD ["python", "pclient.py", ".env_pclient", ".env_pserver"]
