@@ -32,7 +32,8 @@ Se implementaron todas las funcionalidades requeridas.
 
 El sistema está compuesto por tres componentes principales: el pclient, el pserver y el server. El pclient es el encargado de decirle al pserver que debe hacer, si hacer Login, Logout, Subir o Bajar archivos. El pserver es el encargado de manejar la conexión entre los peers y el server. El server es el encargado de manejar la subida y bajada de archivos entre los pservers manejando un index de los archivos que tiene cada pserver.
 
-[Arquitectura]()
+![Arquitectura](https://github.com/msosav/msosav-st0263/assets/85181687/2f5ec562-247a-4da1-8a90-7d50881a28f0)
+
 
 #### 2.2. Patrones
 
@@ -260,7 +261,7 @@ El sistema está compuesto por tres componentes principales: el pclient, el pser
 
 #### Sustentación
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EmKVDCq57so?si=CwHbdLDMm2ZmxL6P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[Link al video](https://youtu.be/EmKVDCq57so)
 
 ## Referencias:
 
