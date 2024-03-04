@@ -1,10 +1,23 @@
-FROM python:3.12-slim-buster
+# Use an official Python runtime as a parent image
+FROM python:3.12
 
-WORKDIR /python-docker
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+# Set the working directory in the container
+WORKDIR /app
 
-COPY . .
+# Copy the application code into the image
+COPY . /app/
 
+# Install dependencies
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# Expose the port the app runs on
+RUN export $(cat .env_server | xargs)
+EXPOSE $SERVER_PORT
+
+# Command to run the application using Gunicorn
 CMD ["python", "server.py", ".env_server"]
