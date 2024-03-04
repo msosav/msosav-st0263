@@ -196,7 +196,7 @@ El sistema está compuesto por tres componentes principales: el pclient, el pser
 
 - Como se lanza el servidor.
 
-  **IMPORTANTE:** Para correr el peer se debe de tener instalado Docker.
+  **IMPORTANTE:** Para correr el server se debe de tener instalado Docker.
 
   Para correr el server se debe de clonear el repositorio y correr el siguiente comando en el directorio _Retos/Reto1y2/server_:
 
