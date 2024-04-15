@@ -13,7 +13,7 @@
 
 Para conectase a esta máquina es necesario conectarse desde el JumpServer.
 
-## Configuración de NFS
+## Configuración
 
 1. Instalar el paquete `nfs-kernel-server`:
 

@@ -47,7 +47,7 @@ sudo usermod -aG docker $USER
 
 3. Cerrar la sesión y volver a iniciarla.
 
-## SSL
+## Configuración
 
 1. Se beben crear las entradas en el DNS para los subdominios
 

@@ -11,7 +11,7 @@ El jump server es un servidor que se utiliza para acceder a otros servidores con
 - **Asignación de IP:** Asignar una IP pública.
 - **Puerto SSH:** 22.
 
-## Copiar clave pem a jump server
+## Configuración
 
 Para copiar la clave pem a jump server se debe ejecutar el siguiente comando:
 

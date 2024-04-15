@@ -37,7 +37,7 @@ Para instalar Docker y Docker Compose en la instancia de Ubuntu, se deben seguir
 
 1. Cerrar la sesión y volver a iniciarla.
 
-## Montar NFS
+### Montar NFS
 
 1. Instalar `nfs-common`:
 
@@ -58,7 +58,7 @@ Para instalar Docker y Docker Compose en la instancia de Ubuntu, se deben seguir
    sudo mount <ip_nfs>:/mnt/wordpress /mnt/wordpress
    ```
 
-## Docker Compose
+## Configuración
 
 Este Docker Compose se utiliza para crear un entorno de WordPress utilizando contenedores Docker. Se debe crear un archivo llamado `docker-compose.yml` con el siguiente contenido:
 

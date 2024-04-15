@@ -36,7 +36,7 @@ sudo usermod -aG docker $USER
 
 3. Cerrar la sesión y volver a iniciarla.
 
-## Docker Compose
+## Configuración
 
 Este Docker Compose se utiliza para crear un entorno de MySQL utilizando contenedores Docker. Se debe crear un archivo llamado `docker-compose.yml` con el siguiente contenido:
 

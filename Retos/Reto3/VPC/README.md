@@ -1,6 +1,6 @@
 # VPC
 
-## Configuración de la VPC
+## Configuración
 
 1. Ir a la consola de AWS.
 2. Ir a la sección de VPC.
