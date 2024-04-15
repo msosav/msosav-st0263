@@ -1,6 +1,8 @@
 # ST0263 Tópicos Especiales en Telemática
 
-**Estudiante: Miguel Sosa, msosav@eafit.edu.co**
+- **Estudiante: Miguel Sosa, msosav@eafit.edu.co**
+- **Estudiante: Miguel Jaramillo, mjaramil20@eafit.edu.co**
+- **Estudiante: Sergio Córdoba, sacordobam@eafit.edu.co**
 
 **Profesor: Edwin Montoya, emontoya@eafit.edu.co**
 
@@ -16,87 +18,105 @@ Además de lo anterior, se utilizarán 2 servidores adicionales, uno para base d
 
 #### 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
+- [x] Desplegar WordPress empleando la tecnología de contenedores.
+- [x] Propio dominio y certificado SSL.
+- [x] Balanceador de cargas.
+- [x] Servidores adicionales para base de datos y archivos.
+- [x] Dos instancias de WordPress.
+
 #### 1.2. Que aspectos NO cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
+
+Se cumplió con todos los requerimientos propuestos por el profesor.
 
 ### 2. Información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
 
-### 3. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
+#### Arquitectura
 
-#### Instalación de Docker y Docker Compose en Ubuntu 20.04
+<div align="center">
+<img src="https://github.com/msosav/msosav-st0263/assets/85181687/c10d1526-ea1f-43cc-a913-b6c2a86ca3d9" />
+</div>
 
-1. Se debe instalar Docker y Docker Compose en la máquina virtual.
+### 3. Descripción del ambiente de ejecución (en producción) lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
 
-   ```bash
-   sudo apt update
-   sudo apt install docker.io -y
-   sudo apt install docker-compose -y
-   sudo apt install git -y
+#### Dominio
 
-   sudo systemctl enable docker
-   sudo systemctl start docker
-   ```
+https://reto3.temporaladventures.tech
 
-1. Se debe añadir el usuario al grupo de Docker.
+> [!NOTE]
+> Solo funcionará la MV durante 4 horas. Entonces lo más seguro es que no funcione a la hora de probarlo.
 
-   ```bash
-   sudo usermod -aG docker $USER
-   ```
+#### VPC
 
-   _Luego se tiene que cerrar la sesión y volver a iniciarla._
+[Configuración](https://github.com/msosav/msosav-st0263/blob/main/Retos/Reto3/VPC/README.md)
 
-#### Monolito de WordPress
+#### JumpServer
 
-Se debe crear una máquina virtual en la nube con Ubuntu 20.04 (preferiblemente) con el puerto 8080 abierto. Además se debe instalar [Docker y Docker Compose](#instalación-de-docker-y-docker-compose-en-ubuntu-2004).
+- **AMI:** Ubuntu Server 20.04 LTS.
+- **Key Pair:** la clave pem utilizada en el reto 3.
+- **VPC:** VPC creada en el reto 3.
+- **Subnet:** Subnet pública.
+- **Asignación de IP:** Asignar una IP pública.
+- **Puerto SSH:** 22.
 
-Los pasos a seguir son los siguientes:
+[Configuración](https://github.com/msosav/msosav-st0263/blob/main/Retos/Reto3/JumpServer/README.md)
 
-1. Se debe crear una archivo `docker-compose.yml` con el siguiente contenido:
+#### NFS
 
-   ```yaml
-   services:
-     db:
-       image: mariadb:10
-       volumes:
-         - data:/var/lib/mysql
-       environment:
-         - MYSQL_ROOT_PASSWORD=secret
-         - MYSQL_DATABASE=wordpress
-         - MYSQL_USER=manager
-         - MYSQL_PASSWORD=secret
-     web:
-       image: wordpress:6
-       depends_on:
-         - db
-       volumes:
-         - ./target:/var/www/html
-       environment:
-         - WORDPRESS_DB_USER=manager
-         - WORDPRESS_DB_PASSWORD=secret
-         - WORDPRESS_DB_HOST=db
-         - WORDPRESS_DB_NAME=wordpress
-       ports:
-         - 8080:80
+- **AMI:** Ubuntu Server 20.04 LTS.
+- **Key Pair:** la clave pem utilizada en el reto 3.
+- **VPC:** VPC creada en el reto 3.
+- **Subnet:** Subnet privada.
+- **Puerto SSH:** 22.
+- **Puerto NFS:** 2049.
 
-   volumes:
-     data:
-   ```
+[Configuración](https://github.com/msosav/msosav-st0263/blob/main/Retos/Reto3/NFS/README.md)
 
-1. Se debe ejecutar el siguiente comando para levantar el servicio.
+#### Database
 
-   ```bash
-    docker-compose up -d
-   ```
+- **AMI:** Ubuntu Server 20.04 LTS.
+- **Key Pair:** la clave pem utilizada en el reto 3.
+- **VPC:** VPC creada en el reto 3.
+- **Subnet:** Subnet privada.
+- **Puerto SSH:** 22.
+- **Puerto MySQL:** 3306.
 
-1. Se debe acceder a la dirección IP de la máquina virtual en el puerto 8080.
+[Configuración](https://github.com/msosav/msosav-st0263/tree/main/Retos/Reto3/Database)
 
-### 4. Descripción del ambiente de ejecución (en producción) lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
+#### WordPress
 
-- IP o nombres de dominio en nube o en la máquina servidor.
-- Descripción y como se configura los parámetros del proyecto (ej: ip, puertos, conexión a bases de datos, variables de ambiente, parámetros, etc)
-- Como se lanza el servidor.
-- Una mini guia de como un usuario utilizaría el software o la aplicación
-- Opcional - si quiere mostrar resultados o pantallazos
+- **AMI:** Ubuntu Server 20.04 LTS.
+- **Key Pair:** la clave pem utilizada en el reto 3.
+- **VPC:** VPC creada en el reto 3.
+- **Subnet:** Subnet privada.
+- **Puerto SSH:** 22.
+- **Puerto HTTP:** 80.
 
-### 5. Otra información que considere relevante para esta actividad.
+[Configuración](https://github.com/msosav/msosav-st0263/tree/main/Retos/Reto3/Wordpress)
+
+#### Load Balancer
+
+- **AMI:** Ubuntu Server 20.04 LTS.
+- **Key Pair:** la clave pem utilizada en el reto 3.
+- **VPC:** VPC creada en el reto 3.
+- **Subnet:** Subnet pública.
+- **Asignación de IP:** IP pública.
+- **Puerto SSH:** 22.
+- **Puerto HTTP:** 80.
+- **Puerto HTTPS:** 443.
+
+[Configuración](https://github.com/msosav/msosav-st0263/tree/main/Retos/Reto3/Load%20Balancer)
+
+#### Pantallazos
+
+<div align="center">
+<img src="https://github.com/msosav/msosav-st0263/assets/85181687/4b9794f9-9e6e-418f-b68c-8748a5e5937a" />
+</div>
+
+### 4. Otra información que considere relevante para esta actividad.
+
+[Video]()
 
 ## Referencias:
+
+- [Repositorio base](https://github.com/st0263eafit/st0263-241)
+- [How To Set Up an NFS Mount on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-20-04)
