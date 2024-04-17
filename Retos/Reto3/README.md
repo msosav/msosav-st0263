@@ -33,7 +33,7 @@ Se cumplió con todos los requerimientos propuestos por el profesor.
 #### Arquitectura
 
 <div align="center">
-<img src="https://github.com/msosav/msosav-st0263/assets/85181687/c10d1526-ea1f-43cc-a913-b6c2a86ca3d9" />
+<img src="https://github.com/msosav/msosav-st0263/assets/85181687/3e5194f6-8385-4c67-8fca-c739c2781efb" />
 </div>
 
 ### 3. Descripción del ambiente de ejecución (en producción) lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
