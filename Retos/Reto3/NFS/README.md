@@ -68,6 +68,12 @@ Para conectase a esta máquina es necesario conectarse desde el JumpServer.
     sudo ufw allow nfs
    ```
 
+1. Agregar la regla para el ssh:
+
+   ```bash
+   sudo ufw allow ssh
+   ```
+
 ## Referencias
 
 - [How To Set Up an NFS Mount on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-20-04)
