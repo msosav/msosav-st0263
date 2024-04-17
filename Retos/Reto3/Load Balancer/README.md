@@ -236,6 +236,7 @@ sudo usermod -aG docker $USER
    Donde:
 
    - `container_name`: Nombre del contenedor
+   - `restart`: Que siempre se reinicie el contenedor
    - `image`: Imagen de Nginx
    - `volumes`: Volumenes a montar
    - `ports`: Puertos a exponer
