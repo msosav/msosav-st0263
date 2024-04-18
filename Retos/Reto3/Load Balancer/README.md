@@ -84,7 +84,8 @@ sudo usermod -aG docker $USER
 1. Se debe copiar los certificados
 
    ```bash
-   sudo cp /etc/letsencrypt/live/sudominio.com/* /home/ubuntu/loadbalancer/ssl
+   sudo su
+   cp /etc/letsencrypt/live/sudominio.com/* /home/ubuntu/loadbalancer/ssl
    ```
 
 1. Se debe crear el archivo de configuración de Nginx en el directorio `loadbalancer` y cambiar `<wordpress_ip_1>` y `<wordpress_ip_2>` por las direcciones IP de las instancias de Wordpress
