@@ -114,7 +114,7 @@ https://reto3.temporaladventures.tech
 
 ### 4. Otra información que considere relevante para esta actividad.
 
-[Video]()
+[Video](https://www.canva.com/design/DAGC9xpcibg/8QG_vGbZG20_T5B-Sz5j3g/edit?utm_content=DAGC9xpcibg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Referencias:
 
