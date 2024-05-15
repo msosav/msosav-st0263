@@ -154,3 +154,7 @@ comandos:
 ## Ver contenido de un archivo
 
 ![Ver archivo](images/hue-11-FileOpen.png)
+
+## Evidenica de la creación de directorios y archivos
+
+![Evidencia](images/Evidencia.png)
