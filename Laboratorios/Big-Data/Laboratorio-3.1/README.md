@@ -130,6 +130,12 @@ _Nota: se debe hacer en el nodo master del cluster EMR_
    hdfs dfs -mkdir /user/hadoop/datasets/gutenberg-small
    ```
 
+1. Clonar el repositorio de la materia.
+
+   ```bash
+   git clone https://github.com/st0263eafit/st0263-241.git
+   ```
+
 1. Copiar los archivos del dataset `gutenberg-small` a la carpeta `gutenberg-small`.
 
    ```bash
