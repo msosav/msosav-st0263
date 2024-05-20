@@ -253,6 +253,6 @@ _Nota: se debe hacer en el nodo master del cluster EMR_
 
 ## Referencias
 
-- [ST0263 Tópicos Especiales en Telemática]()
+- [ST0263 Tópicos Especiales en Telemática](https://github.com/st0263eafit/st0263-241)
 - [How to Make an S3 Bucket Public](https://saturncloud.io/blog/how-to-make-an-s3-bucket-public/)
 - [Uploading files to S3 account from Linux command line](https://superuser.com/questions/279986/uploading-files-to-s3-account-from-linux-command-line)
