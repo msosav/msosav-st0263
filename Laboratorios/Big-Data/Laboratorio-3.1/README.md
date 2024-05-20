@@ -152,6 +152,79 @@ _Nota: se debe hacer en el nodo master del cluster EMR_
     hdfs dfs -ls /user/hadoop/datasets/gutenberg-small/
     ```
 
+#### 3.3. Copiar (gestión) de archivos hacia AWS S3 vía HUE.
+
+1.  Crear un bucket llamado `datasets-lab3-1`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/bb6a7796-8e55-410b-a35e-1e2c71a5a36a" />
+    </p>
+
+1.  Ir al bucket `datasets-lab3-1`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/af5fbe68-19d2-47dc-8229-f33055270779" />
+    </p>
+
+1.  Ir a `Permissions`
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/233197ed-af1f-4f9f-9e68-38effed6efba" />
+    </p>
+
+1.  Editar `Block public access (bucket settings)` y desmarcar `Block all public access`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/86c1f229-6825-4b22-a2c2-e70ff4d8ebcd" />
+    </p>
+
+1.  Cambiar la política del bucket para que sea público.
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "PublicReadGetObject",
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": ["s3:GetObject"],
+          "Resource": ["arn:aws:s3:::datasets-lab3-1/*"]
+        }
+      ]
+    }
+    ```
+
+1.  Guardar la política.
+
+1.  Ingresar a HUE de la misma forma que en el paso 3.1.
+
+1.  Ir a la sección de S3.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/9bb98e5e-0b00-4ef1-b137-e9319e1aeed3" />
+    </p>
+
+1.  Seleccionar el bucket `datasets-lab3-1`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/c1b45f61-ebe4-47b6-8cb3-921d251e8f6e" />
+    </p>
+
+1.  Crear un directorio llamado `gutenberg-small`.
+
+1.  Subir los archivos del dataset `gutenberg-small` a la carpeta `gutenberg-small`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/98788b09-721a-431b-be18-b5490e00372b" />
+    </p>
+
+1.  Listar los archivos en S3 para verificar que se copiaron correctamente.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/c03de421-d920-45a2-8685-0442fd943a31" />
+    </p>
+
 ### 4. Otra información que considere relevante para esta actividad.
 
 ## Referencias
