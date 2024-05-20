@@ -10,17 +10,17 @@
 
 En este laboratorio se realizará la gestión de archivos en HDFS y S3 para Big Data. Se realizarán las siguientes actividades:
 
-- Copiar (gestión) de archivos hacia el HDFS vía HUE.
-- Copiar (gestión) de archivos hacia el HDFS vía SSH.
-- Copiar (gestión) de archivos hacia AWS S3 vía HUE.
-- Copiar (gestión) de archivos hacia el AWS S3 vía SSH.
+- Copiar archivos hacia el HDFS vía HUE.
+- Copiar archivos hacia el HDFS vía SSH.
+- Copiar archivos hacia AWS S3 vía HUE.
+- Copiar archivos hacia el AWS S3 vía SSH.
 
 #### 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
-- [x] Copiar (gestión) de archivos hacia el HDFS vía HUE.
-- [x] Copiar (gestión) de archivos hacia el HDFS vía SSH.
-- [x] Copiar (gestión) de archivos hacia AWS S3 vía HUE.
-- [x] Copiar (gestión) de archivos hacia el AWS S3 vía SSH.
+- [x] Copiar archivos hacia el HDFS vía HUE.
+- [x] Copiar archivos hacia el HDFS vía SSH.
+- [x] Copiar archivos hacia AWS S3 vía HUE.
+- [x] Copiar archivos hacia el AWS S3 vía SSH.
 
 #### 1.2. Que aspectos NO cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
@@ -62,7 +62,7 @@ Para el desarrollo del laboratorio se realizaró lo siguiente:
       sudo systemctl restart hue.service
       ```
 
-#### 3.1. Copiar (gestión) de archivos hacia el HDFS vía HUE.
+#### 3.1. Copiar archivos hacia el HDFS vía HUE
 
 1.  Ingresar a HUE.
 
@@ -108,7 +108,7 @@ Para el desarrollo del laboratorio se realizaró lo siguiente:
     <img src="https://github.com/msosav/msosav-st0263/assets/85181687/a0fbc36b-ceae-4ce0-9f3f-35cc6c4ba45e" />
     </p>
 
-#### 3.2. Copiar (gestión) de archivos hacia el HDFS vía SSH.
+#### 3.2. Copiar archivos hacia el HDFS vía SSH
 
 _Nota: se debe hacer en el nodo master del cluster EMR_
 
@@ -142,7 +142,7 @@ _Nota: se debe hacer en el nodo master del cluster EMR_
    hdfs dfs -ls /user/hadoop/datasets/gutenberg-small/
    ```
 
-#### 3.3. Copiar (gestión) de archivos hacia AWS S3 vía HUE.
+#### 3.3. Copiar archivos hacia AWS S3 vía HUE
 
 1.  Crear un bucket llamado `datasets-lab3-1`.
 
@@ -215,7 +215,7 @@ _Nota: se debe hacer en el nodo master del cluster EMR_
     <img src="https://github.com/msosav/msosav-st0263/assets/85181687/c03de421-d920-45a2-8685-0442fd943a31" />
     </p>
 
-#### 3.4. Copiar (gestión) de archivos hacia el AWS S3 vía SSH.
+#### 3.4. Copiar archivos hacia el AWS S3 vía SSH
 
 1.  Conectar por SSH al nodo master del cluster.
 
