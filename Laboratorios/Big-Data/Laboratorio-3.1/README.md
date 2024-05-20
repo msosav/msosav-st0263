@@ -128,29 +128,35 @@ Para el desarrollo del laboratorio se realizaró lo siguiente:
 
 _Nota: se debe hacer en el nodo master del cluster EMR_
 
-1.  Crear un directorio `datasets` en HDFS.
+1. Conectarse con el nodo master del cluster.
 
-    ```bash
-    hdfs dfs -mkdir /user/hadoop/datasets
-    ```
+   ```bash
+   ssh -i "vockey.pem" hadoop@...
+   ```
 
-1.  Crear un directorio `gutenberg-small` en HDFS.
+1. Crear un directorio `datasets` en HDFS.
 
-    ```bash
-    hdfs dfs -mkdir /user/hadoop/datasets/gutenberg-small
-    ```
+   ```bash
+   hdfs dfs -mkdir /user/hadoop/datasets
+   ```
 
-1.  Copiar los archivos del dataset `gutenberg-small` a la carpeta `gutenberg-small`.
+1. Crear un directorio `gutenberg-small` en HDFS.
 
-    ```bash
-    hdfs dfs -put $HOME/st0263-241/bigdata/datasets/gutenberg-small/*.txt /user/hadoop/datasets/gutenberg-small/
-    ```
+   ```bash
+   hdfs dfs -mkdir /user/hadoop/datasets/gutenberg-small
+   ```
 
-1.  Listar los archivos en HDFS para verificar que se copiaron correctamente.
+1. Copiar los archivos del dataset `gutenberg-small` a la carpeta `gutenberg-small`.
 
-    ```bash
-    hdfs dfs -ls /user/hadoop/datasets/gutenberg-small/
-    ```
+   ```bash
+   hdfs dfs -put $HOME/st0263-241/bigdata/datasets/gutenberg-small/*.txt /user/hadoop/datasets/gutenberg-small/
+   ```
+
+1. Listar los archivos en HDFS para verificar que se copiaron correctamente.
+
+   ```bash
+   hdfs dfs -ls /user/hadoop/datasets/gutenberg-small/
+   ```
 
 #### 3.3. Copiar (gestión) de archivos hacia AWS S3 vía HUE.
 
