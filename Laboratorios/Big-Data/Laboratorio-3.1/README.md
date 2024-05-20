@@ -14,7 +14,6 @@ En este laboratorio se realizará la gestión de archivos en HDFS y S3 para Big 
 - Copiar (gestión) de archivos hacia el HDFS vía SSH.
 - Copiar (gestión) de archivos hacia AWS S3 vía HUE.
 - Copiar (gestión) de archivos hacia el AWS S3 vía SSH.
-- Enlace al bucket público de S3 con los datasets de trabajo.
 
 #### 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
@@ -22,11 +21,14 @@ En este laboratorio se realizará la gestión de archivos en HDFS y S3 para Big 
 - [x] Copiar (gestión) de archivos hacia el HDFS vía SSH.
 - [x] Copiar (gestión) de archivos hacia AWS S3 vía HUE.
 - [x] Copiar (gestión) de archivos hacia el AWS S3 vía SSH.
-- [ ] Enlace al bucket público de S3 con los datasets de trabajo.
 
 #### 1.2. Que aspectos NO cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 
+No se dejó ningún aspecto sin cumplir.
+
 ### 2. Información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
+
+Para el desarrollo del laboratorio se utilizó el servicio de **Amazon EMR** para la creación de un cluster de Hadoop. Se utilizó el servicio de **HUE** para la gestión de archivos en HDFS y **S3**.
 
 ### 3. Desarrollo del laboratorio
 
@@ -247,3 +249,4 @@ _Nota: se debe hacer en el nodo master del cluster EMR_
 
 - [ST0263 Tópicos Especiales en Telemática]()
 - [How to Make an S3 Bucket Public](https://saturncloud.io/blog/how-to-make-an-s3-bucket-public/)
+- [Uploading files to S3 account from Linux command line](https://superuser.com/questions/279986/uploading-files-to-s3-account-from-linux-command-line)
