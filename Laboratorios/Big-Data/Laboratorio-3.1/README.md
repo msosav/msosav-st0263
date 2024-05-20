@@ -1,0 +1,160 @@
+# ST0263 Tópicos Especiales en Telemática
+
+**Estudiante: Miguel Sosa, msosav@eafit.edu.co**
+
+**Profesor: Edwin Montoya, emontoya@eafit.edu.co**
+
+## Laboratorio 3.1: Gestión de archivos en HDFS y S3 para Big Data
+
+### 1. Breve descripción de la actividad
+
+En este laboratorio se realizará la gestión de archivos en HDFS y S3 para Big Data. Se realizarán las siguientes actividades:
+
+- Copiar (gestión) de archivos hacia el HDFS vía HUE.
+- Copiar (gestión) de archivos hacia el HDFS vía SSH.
+- Copiar (gestión) de archivos hacia AWS S3 vía HUE.
+- Copiar (gestión) de archivos hacia el AWS S3 vía SSH.
+- Enlace al bucket público de S3 con los datasets de trabajo.
+
+#### 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
+
+- [x] Copiar (gestión) de archivos hacia el HDFS vía HUE.
+- [x] Copiar (gestión) de archivos hacia el HDFS vía SSH.
+- [ ] Copiar (gestión) de archivos hacia AWS S3 vía HUE.
+- [ ] Copiar (gestión) de archivos hacia el AWS S3 vía SSH.
+- [ ] Enlace al bucket público de S3 con los datasets de trabajo.
+
+#### 1.2. Que aspectos NO cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
+
+### 2. Información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
+
+### 3. Desarrollo del laboratorio
+
+Para el desarrollo del laboratorio se realizaró lo siguiente:
+
+1. Crear un cluster siguiendo [las instrucciones del laboratorio 0](https://github.com/st0263eafit/st0263-241/tree/main/bigdata/00-lab-aws-emr).
+
+1. Conectar al nodo master del cluster vía SSH.
+
+   ```bash
+   ssh -i "vockey.pem" hadoop@ec2.compute-1.amazonaws.com
+   ```
+
+1. Instalar git en el servidor EMR.
+
+   ```bash
+   sudo yum install git
+   ```
+
+1. Clonar el repositorio de la materia.
+
+   ```bash
+    git clone https://github.com/st0263eafit/st0263-241.git
+   ```
+
+1. Cambiar el puerto de HDFS de 14000 a 9870
+
+   1. Conecatarse con el nodo master del cluster
+
+      ```bash
+      ssh -i "vockey.pem" ec2-user@...
+      ```
+
+   1. Editar el archivo `/etc/hue/conf/hue.ini`
+
+      ```bash
+      sudo vi /etc/hue/conf/hue.ini
+      ```
+
+   1. Cambiar el puerto de `14000` a `9870`, buscar `/hdfs_clusters` y cambiar el puerto
+
+      ```bash
+      webhdfs_url=http://...:9870/webhdfs/v1
+      ```
+
+   1. Reiniciar el servicio de hue
+
+      ```bash
+      sudo systemctl restart hue.service
+      ```
+
+#### 3.1. Copiar (gestión) de archivos hacia el HDFS vía HUE.
+
+1.  Ingresar a HUE. La URL es `http://ec2.compute-1.amazonaws.com:8888`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/c047ebe8-56f5-47c1-8f33-181a5ba94601">
+    </p>
+
+1.  Ingresar con el usuario `hadoop` y la contraseña configurada.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/4271e68c-81a1-4621-afea-82749e869249" />
+    </p>
+
+1.  Ir a la sección de `Files`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/1e50a81b-a9a7-4848-b84e-0de520b88cac" />
+    </p>
+
+1.  Darle a `New` y seleccionar `Directory`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/0e7e12b9-7790-45e2-a232-71cede7f237c" />
+    </p>
+
+1.  Crear un directorio `datasets`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/5455d9fd-602a-4de3-a992-7675fdd691ca" />
+    </p>
+
+1.  Crear un directorio `gutenberg-small` dentro de `datasets`.
+
+1.  Subir los archivos del dataset `gutenberg-small` a la carpeta `datasets`.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/8ddc553d-d5a1-4bf9-99be-64b04731aef0" />
+    </p>
+
+1.  Listar los archivos en HDFS para verificar que se copiaron correctamente.
+
+    <p align="center">
+    <img src="https://github.com/msosav/msosav-st0263/assets/85181687/a0fbc36b-ceae-4ce0-9f3f-35cc6c4ba45e" />
+    </p>
+
+#### 3.2. Copiar (gestión) de archivos hacia el HDFS vía SSH.
+
+_Nota: se debe hacer en el nodo master del cluster EMR_
+
+1.  Crear un directorio `datasets` en HDFS.
+
+    ```bash
+    hdfs dfs -mkdir /user/hadoop/datasets
+    ```
+
+1.  Crear un directorio `gutenberg-small` en HDFS.
+
+    ```bash
+    hdfs dfs -mkdir /user/hadoop/datasets/gutenberg-small
+    ```
+
+1.  Copiar los archivos del dataset `gutenberg-small` a la carpeta `gutenberg-small`.
+
+    ```bash
+    hdfs dfs -put $HOME/st0263-241/bigdata/datasets/gutenberg-small/*.txt /user/hadoop/datasets/gutenberg-small/
+    ```
+
+1.  Listar los archivos en HDFS para verificar que se copiaron correctamente.
+
+    ```bash
+    hdfs dfs -ls /user/hadoop/datasets/gutenberg-small/
+    ```
+
+### 4. Otra información que considere relevante para esta actividad.
+
+## Referencias
+
+- [ST0263 Tópicos Especiales en Telemática]()
+- [How to Make an S3 Bucket Public](https://saturncloud.io/blog/how-to-make-an-s3-bucket-public/)
