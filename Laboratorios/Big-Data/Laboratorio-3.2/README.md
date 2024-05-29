@@ -119,6 +119,10 @@ Para el desarrollo del laboratorio se realizaró lo siguiente:
         <img src="https://github.com/msosav/msosav-st0263/assets/85181687/72c46a4d-ca82-465c-ba3f-98823d232201" />
         </p>
 
+### 4. Aspectos adicionales
+
+- [Laboratorio 3: HIVE y SparkSQL, gestión de datos via SQL](https://github.com/msosav/msosav-st0263/tree/main/Laboratorios/Big-Data/Laboratorio-3)
+
 ## Referencias
 
 - [Repositorio de la materia](https://github.com/st0263eafit/st0263-241/tree/main)
